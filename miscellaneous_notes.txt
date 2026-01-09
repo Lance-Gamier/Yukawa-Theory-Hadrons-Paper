@@ -1,0 +1,15 @@
+Use this line to create in input-able section when running a program which takes in 2 input values idA_str and idB_str
+-----------------------
+std::string idA_str, idB_str;
+
+std::cout << "Enter the number code of the first particle:";
+std::cin >> idA_str;
+
+std::cout << "Enter the number code of the second particle:";
+std::cin >> idB_str;
+
+int idA = std::stoi(idA_str);
+int idB = std::stoi(idB_str);
+
+pythia.readString("Beams:idA = " + std::to_string(idA));
+pythia.readString("Beams:idB = " + std::to_string(idB));
