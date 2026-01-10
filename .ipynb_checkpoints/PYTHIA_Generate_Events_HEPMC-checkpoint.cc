@@ -40,12 +40,30 @@ std::unordered_map<std::string, std::string> particle_mapping_dictionary
     {"D_+_s", "431"}, // (c -s)
     {"B_0", "511"}, // (d -b)
     {"B_+", "521"}, // (u -b)
-    {"B_0_s", "531"} // (s -b)
+    {"B_0_s", "531"}, // (s -b)
     {"B_+_c", "541"} // (c -b)
 };
 
 int main() {
     std::string idA_input, idB_input;
+
+    std::cout << "Baryons:\n";
+    for (const auto& [name, code] : particle_mapping_dictionary)
+    {
+        if (code.length() == 4)
+        {
+            std::cout << "  " << name << '\n';
+        }
+    }
+
+    std::cout << "\nMesons:\n";
+    for (const auto& [name, code] : particle_mapping_dictionary)
+    {
+        if (code.length() == 3)
+        {
+            std::cout << "  " << name << '\n';
+        }
+    }
 
     std::cout << "Enter the name of the first particle: ";
     std::cin >> idA_input;
