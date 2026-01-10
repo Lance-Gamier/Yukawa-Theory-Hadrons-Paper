@@ -44,7 +44,7 @@ std::unordered_map <std::string, std::string> particle_mapping_dictionary
 
 int main()
 {
-    std::string idA_input, idB_input;
+    std::string idA_input, idB_input, subfolder;
 
     std::cout << "Baryons:\n";
     for (const auto& [name, code] : particle_mapping_dictionary)
@@ -77,7 +77,13 @@ int main()
     int idB = std::stoi(idB_str->second);
     
     // Open ROOT file to store the tree
-    TFile *output = new TFile(("ROOT_Results/Simulation_" + idA_input + "_and_" + idB_input + ".root").c_str(), "recreate");
+    if (std::to_string(idA).length() == 4 && std::to_string(idB).length() == 4) {
+        subfolder = "Moller_like";
+    } else if (std::to_string(idA).length() == 3 || std::to_string(idB).length() == 3) {
+        subfolder = "Creation_and_Annihilation";
+    }
+    
+    TFile *output = new TFile(("ROOT_Results/" + subfolder +"/Simulation_" + idA_input + "_and_" + idB_input + ".root").c_str(), "recreate");
 
     // Create a TTree to hold the data
     TTree *tree = new TTree("tree", "tree");

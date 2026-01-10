@@ -45,7 +45,7 @@ std::unordered_map<std::string, std::string> particle_mapping_dictionary
 };
 
 int main() {
-    std::string idA_input, idB_input;
+    std::string idA_input, idB_input, subfolder;
 
     std::cout << "Baryons:\n";
     for (const auto& [name, code] : particle_mapping_dictionary)
@@ -89,7 +89,13 @@ int main() {
 
     pythia.init();
 
-    HepMC3::WriterAscii writer(("HEPMC_Results/Simulation_" + idA_input + "_and_" + idB_input + ".hepmc").c_str());
+    if (std::to_string(idA).length() == 4 && std::to_string(idB).length() == 4) {
+        subfolder = "Moller_like";
+    } else if (std::to_string(idA).length() == 3 || std::to_string(idB).length() == 3) {
+        subfolder = "Creation_and_Annihilation";
+    }
+    
+    HepMC3::WriterAscii writer(("HEPMC_Results/" + subfolder + "/Simulation_" + idA_input + "_and_" + idB_input + ".hepmc").c_str());
 
     for (int i = 0; i < nevents; i++) 
     {
