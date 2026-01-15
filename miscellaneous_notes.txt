@@ -1,15 +1,11 @@
-Use this line to create in input-able section when running a program which takes in 2 input values idA_str and idB_str
------------------------
-std::string idA_str, idB_str;
+Failed Simulations:
 
-std::cout << "Enter the number code of the first particle:";
-std::cin >> idA_str;
-
-std::cout << "Enter the number code of the second particle:";
-std::cin >> idB_str;
-
-int idA = std::stoi(idA_str);
-int idB = std::stoi(idB_str);
-
-pythia.readString("Beams:idA = " + std::to_string(idA));
-pythia.readString("Beams:idB = " + std::to_string(idB));
+Simulation_omega_0_b_b_c_and_omega_0_b_b_c.root
+Simulation_omega_minus_b_b_and_omega_minus_b_b.root
+Simulation_omega_plus_b_c_c_and_omega_plus_b_c_c.root
+Simulation_omega_plus_c_c_and_omega_plus_c_c.root
+Simulation_sigma_asterisk_plus_b_and_sigma_asterisk_plus_b.root
+Simulation_xi_0_b_b_and_xi_0_b_b.root
+Simulation_xi_minus_b_b_and_xi_minus_b_b.root
+Simulation_xi_plus_c_c_and_xi_plus_c_c.root
+Simulation_xi_plus_plus_c_c_and_xi_plus_plus_c_c.root

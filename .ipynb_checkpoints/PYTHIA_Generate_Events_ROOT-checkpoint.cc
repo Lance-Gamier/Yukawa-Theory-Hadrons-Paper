@@ -25,7 +25,7 @@ std::unordered_map <std::string, std::string> particle_mapping_dictionary
     {"omega_plus_c_c", "4432"}, // (ccs)
     {"omega_plus_b_c_c", "5442"}, // (ccb)
     {"xi_0_b_b", "5522"}, // (bbu)
-    {"xi_-_b_b", "5512"}, // (bbd)
+    {"xi_minus_b_b", "5512"}, // (bbd)
     {"omega_minus_b_b", "5532"}, // (bbs)
     {"omega_0_b_b_c", "5542"}, // (bbc)
     // Meson
