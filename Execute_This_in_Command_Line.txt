@@ -10,4 +10,6 @@ g++ -I/home/user/miniconda3/envs/root-cpp/include -o Simulation_Program_HEPMC_Ou
 
 ./Simulation_Program_HEPMC_Output
 
+root -l yourfile.root -e "new TBrowser"
+
 ssh-add ~/github_ssh_key

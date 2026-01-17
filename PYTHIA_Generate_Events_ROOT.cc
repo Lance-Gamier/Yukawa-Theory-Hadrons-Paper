@@ -29,17 +29,26 @@ std::unordered_map <std::string, std::string> particle_mapping_dictionary
     {"omega_minus_b_b", "5532"}, // (bbs)
     {"omega_0_b_b_c", "5542"}, // (bbc)
     // Meson
-    {"pion_0", "111"}, // (u -d)
-    {"pion_+", "211"}, // (d -u)
+    {"pion_+", "211"}, // (u -d)
+    {"pion_-", "-211"}, // (d -u)
     {"D_0", "421"}, // (c -u)
-    {"D_+", "422"}, // (c -d)
+    {"D_bar_0", "-421"}, // (u -c)
+    {"D_+", "411"}, // (c -d)
+    {"D_-", "-411"}, // (d -c)
     {"K_0", "311"}, // (d -s)
+    {"K_bar_0", "-311"}, // (s -d)
     {"K_+", "321"}, // (u -s)
+    {"K_-", "-321"}, // (s -u)
     {"D_+_s", "431"}, // (c -s)
+    {"D_-_s", "-431"}, // (s -c)
     {"B_0", "511"}, // (d -b)
+    {"B_bar_0", "-511"}, // (b -d)
     {"B_+", "521"}, // (u -b)
+    {"B_-", "-521"}, // (b -u)
     {"B_0_s", "531"}, // (s -b)
-    {"B_+_c", "541"} // (c -b)
+    {"B_bar_0_s", "-531"}, // (b -s)
+    {"B_+_c", "541"}, // (c -b)
+    {"B_-_c", "-541"} // (b -c)
 };
 
 int main()
@@ -80,7 +89,7 @@ int main()
     if (std::to_string(idA).length() == 4 && std::to_string(idB).length() == 4) {
         subfolder = "Moller_like";
     } else if (std::to_string(idA).length() == 3 || std::to_string(idB).length() == 3) {
-        subfolder = "Creation_and_Annihilation";
+        subfolder = "Compton_like";
     }
     
     TFile *output = new TFile(("ROOT_Results/" + subfolder +"/Simulation_" + idA_input + "_and_" + idB_input + ".root").c_str(), "recreate");
