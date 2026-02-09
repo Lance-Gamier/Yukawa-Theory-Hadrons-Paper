@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
+#include <cstdlib>
 #include "TFile.h"
 #include "TTree.h"
 #include "Pythia8/Pythia.h"
@@ -31,16 +32,20 @@ std::unordered_map <std::string, std::string> particle_mapping_dictionary
     // Meson
     {"pion_+", "211"}, // (u -d)
     {"pion_-", "-211"}, // (d -u)
+    {"pion_0", "111"}, // (u -u) or (d -d)
+    {"pion_bar_0", "-111"}, // (u -u) or (d -d)
     {"D_0", "421"}, // (c -u)
     {"D_bar_0", "-421"}, // (u -c)
     {"D_+", "411"}, // (c -d)
     {"D_-", "-411"}, // (d -c)
+    {"eta", "221"}, // (c -c)
     {"K_0", "311"}, // (d -s)
     {"K_bar_0", "-311"}, // (s -d)
     {"K_+", "321"}, // (u -s)
     {"K_-", "-321"}, // (s -u)
     {"D_+_s", "431"}, // (c -s)
     {"D_-_s", "-431"}, // (s -c)
+    {"eta_c", "441"}, // (c -c)
     {"B_0", "511"}, // (d -b)
     {"B_bar_0", "-511"}, // (b -d)
     {"B_+", "521"}, // (u -b)
@@ -48,7 +53,8 @@ std::unordered_map <std::string, std::string> particle_mapping_dictionary
     {"B_0_s", "531"}, // (s -b)
     {"B_bar_0_s", "-531"}, // (b -s)
     {"B_+_c", "541"}, // (c -b)
-    {"B_-_c", "-541"} // (b -c)
+    {"B_-_c", "-541"}, // (b -c)
+    {"eta_b", "551"} // (b -b)
 };
 
 int main()
@@ -58,16 +64,18 @@ int main()
     std::cout << "Baryons:\n";
     for (const auto& [name, code] : particle_mapping_dictionary)
     {
-        if (code.length() == 4)
+        int pdg = std::abs(std::stoi(code));
+        if (pdg >= 1000 && pdg < 10000)
         {
             std::cout << "  " << name << '\n';
         }
     }
-
+    
     std::cout << "\nMesons:\n";
     for (const auto& [name, code] : particle_mapping_dictionary)
     {
-        if (code.length() == 3)
+        int pdg = std::abs(std::stoi(code));
+        if (pdg >= 100 && pdg < 1000)
         {
             std::cout << "  " << name << '\n';
         }
@@ -86,9 +94,11 @@ int main()
     int idB = std::stoi(idB_str->second);
     
     // Open ROOT file to store the tree
-    if (std::to_string(idA).length() == 4 && std::to_string(idB).length() == 4) {
+    int a = std::abs(idA);
+    int b = std::abs(idB);
+    if (a >= 1000 && b >= 1000) {
         subfolder = "Moller_like";
-    } else if (std::to_string(idA).length() == 3 || std::to_string(idB).length() == 3) {
+    } else if ((a >= 100 && a < 1000) || (b >= 100 && b < 1000)) {
         subfolder = "Compton_like";
     }
     
